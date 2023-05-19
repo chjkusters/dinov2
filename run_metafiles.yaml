@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: chjkusters-dinov2-metafiles
+  namespace: medical
+spec:
+  securityContext:
+    runAsUser: 1005 # user_id for chjkusters
+    runAsGroup: 1001 # group_id for chjkusters
+  restartPolicy: Never
+  containers:
+    - name: dinov2-container
+      image: "chjkusters4/dinov2:V1"
+      imagePullPolicy: Always
+      volumeMounts:
+      - mountPath: /share/medical
+        name: cephfs
+      - mountPath: /dev/shm
+        name: dshm
+      resources:
+        limits:
+          nvidia.com/gpu: 0
+          cpu: "16"
+          memory: "24Gi"
+        requests:
+          nvidia.com/gpu: 0
+          cpu: "16"
+          memory: "24Gi"
+      env:
+      - name: RUN_TRAINING
+        value:  "/share/medical/chjkusters/dinov2/run_metafiles.sh"
+      command: ["/bin/bash"]
+      args: ["$(RUN_TRAINING)"]
+      #command: [ "/bin/bash", "-c", "--" ]
+      #args: [ "while true; do sleep 30; done;" ]
+  priorityClassName: high-priority-pod
+  volumes:
+    - name: cephfs
+      persistentVolumeClaim:
+        claimName: cephfs-medical-pvc
+    - name: dshm
+      emptyDir:
+        medium: Memory
+
+  nodeSelector:
+    nvidia.com/gpu.product: NVIDIA-TITAN-RTX
+#    nvidia.com/gpu.product: NVIDIA-RTX-A4500
+#    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
+#    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-3090-Ti
