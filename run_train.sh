@@ -1,4 +1,4 @@
-cd /share/medical/chjkusters/dinov2/run/train/
+cd /share/medical/chjkusters/dinov2/dinov2/run/train/
 
 python3 train.py \
     --nodes 1 \
