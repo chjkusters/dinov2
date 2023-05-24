@@ -1,7 +1,7 @@
 import os
 from dinov2.data.datasets import ImageNet
 
-# Specify dataroot
+# Specify dataroot cluster
 dataroot = '/share/medical/Vault/datasets_working/GastroNet5MDino'
 
 # Create labels.txt file in dataroot
