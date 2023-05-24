@@ -1,6 +1,6 @@
-cd /share/medical/chjkusters/dinov2/dinov2/run/train/
+cd /share/medical/chjkusters/dinov2/
 
-python3 train.py \
+python3 dinov2/run/train/train.py \
     --nodes 1 \
     --config-file dinov2/configs/train vits16.yaml \
     --output-dir '/share/medical/chjkusters/dinov2/output/' \
