@@ -45,5 +45,5 @@ spec:
   nodeSelector:
 #    nvidia.com/gpu.product: NVIDIA-TITAN-RTX
 #    nvidia.com/gpu.product: NVIDIA-RTX-A4500
-#    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
+    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
 #    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-3090-Ti
