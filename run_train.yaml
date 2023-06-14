@@ -19,12 +19,12 @@ spec:
         name: dshm
       resources:
         limits:
-          nvidia.com/gpu: 4  # Max 8 GPU / 64 CPU / 192 GB
-          cpu: "32"
+          nvidia.com/gpu: 2
+          cpu: "48"
           memory: "96Gi"
         requests:
-          nvidia.com/gpu: 4
-          cpu: "32"
+          nvidia.com/gpu: 2
+          cpu: "48"
           memory: "96Gi"
       env:
       - name: RUN_TRAINING
@@ -43,7 +43,8 @@ spec:
         medium: Memory
 
   nodeSelector:
-#    nvidia.com/gpu.product: NVIDIA-TITAN-RTX
+#    8 CPU/GPU, 24GB/GPU for 2080 | 24 CPU/GPU, 48GB/GPU for TITAN
+    nvidia.com/gpu.product: NVIDIA-TITAN-RTX
 #    nvidia.com/gpu.product: NVIDIA-RTX-A4500
-    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
+#    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
 #    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-3090-Ti
