@@ -38,12 +38,13 @@ class _Split(Enum):
 
     def get_image_relpath(self, actual_index: int, class_id: Optional[str] = None) -> str:
         dirname = self.get_dirname(class_id)
-        print(dirname, actual_index)
         if self == _Split.TRAIN:
-            basename = f"{class_id}_{actual_index}"
+            # basename = f"{class_id}_{actual_index}"
+            basename = f"{actual_index:08d}.png"
         else:  # self in (_Split.VAL, _Split.TEST):
             basename = f"ILSVRC2012_{self.value}_{actual_index:08d}"
-        return os.path.join(dirname, basename + ".JPEG")
+        # return os.path.join(dirname, basename + ".JPEG")
+        return os.path.join(dirname, basename)
 
     def parse_image_relpath(self, image_relpath: str) -> Tuple[str, int]:
         assert self != _Split.TEST
