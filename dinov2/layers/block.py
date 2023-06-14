@@ -170,8 +170,8 @@ def get_attn_bias_and_cat(x_list, branges=None):
         attn_bias_cache[all_shapes] = attn_bias
 
     if branges is not None:
-        print(branges)
-        print([x.flatten(1) for x in x_list])
+        print(branges.shape)
+        print([x.flatten(1).shape for x in x_list])
         cat_tensors = index_select_cat([x.flatten(1) for x in x_list], branges).view(1, -1, x_list[0].shape[-1])
     else:
         tensors_bs1 = tuple(x.reshape([1, -1, *x.shape[2:]]) for x in x_list)
