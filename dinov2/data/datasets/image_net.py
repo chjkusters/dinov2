@@ -42,7 +42,8 @@ class _Split(Enum):
             # basename = f"{class_id}_{actual_index}"
             basename = f"{actual_index:08d}.png"
         else:  # self in (_Split.VAL, _Split.TEST):
-            basename = f"ILSVRC2012_{self.value}_{actual_index:08d}"
+            # basename = f"ILSVRC2012_{self.value}_{actual_index:08d}"
+            basename = f"{actual_index:08d}.png"
         # return os.path.join(dirname, basename + ".JPEG")
         return os.path.join(dirname, basename)
 
