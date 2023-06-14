@@ -38,6 +38,7 @@ class _Split(Enum):
 
     def get_image_relpath(self, actual_index: int, class_id: Optional[str] = None) -> str:
         dirname = self.get_dirname(class_id)
+        print(dirname, actual_index)
         if self == _Split.TRAIN:
             basename = f"{class_id}_{actual_index}"
         else:  # self in (_Split.VAL, _Split.TEST):
