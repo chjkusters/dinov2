@@ -20,12 +20,12 @@ spec:
       resources:
         limits:
           nvidia.com/gpu: 0
-          cpu: "8"
-          memory: "8Gi"
+          cpu: "2"
+          memory: "2Gi"
         requests:
           nvidia.com/gpu: 0
-          cpu: "8"
-          memory: "8Gi"
+          cpu: "2"
+          memory: "2Gi"
       env:
       - name: RUN_TRAINING
         value:  "/share/medical/chjkusters/dinov2/run_visualization.sh"
