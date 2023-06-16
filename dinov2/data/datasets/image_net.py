@@ -39,13 +39,13 @@ class _Split(Enum):
     def get_image_relpath(self, actual_index: int, class_id: Optional[str] = None) -> str:
         dirname = self.get_dirname(class_id)
         if self == _Split.TRAIN:
-            # basename = f"{class_id}_{actual_index}"                       # ImageNet Implementation
-            basename = f"{actual_index:08d}.png"                            # GastroNet Implementation
+            basename = f"{class_id}_{actual_index}"                       # ImageNet Implementation
+            # basename = f"{actual_index:08d}.png"                            # GastroNet Implementation
         else:  # self in (_Split.VAL, _Split.TEST):
-            # basename = f"ILSVRC2012_{self.value}_{actual_index:08d}"      # ImageNet Implementation
-            basename = f"{actual_index:08d}.png"                            # GastroNet Implementation
-        # return os.path.join(dirname, basename + ".JPEG")                  # ImageNet Implementation
-        return os.path.join(dirname, basename)                              # GastroNet Implementation
+            basename = f"ILSVRC2012_{self.value}_{actual_index:08d}"      # ImageNet Implementation
+            # basename = f"{actual_index:08d}.png"                            # GastroNet Implementation
+        return os.path.join(dirname, basename + ".JPEG")                  # ImageNet Implementation
+        # return os.path.join(dirname, basename)                              # GastroNet Implementation
 
     def parse_image_relpath(self, image_relpath: str) -> Tuple[str, int]:
         assert self != _Split.TEST
@@ -169,7 +169,7 @@ class ImageNet(ExtendedVisionDataset):
 
     def __len__(self) -> int:
         entries = self._get_entries()
-        # assert len(entries) == self.split.length          # Adaptation for GastroNet Implementation
+        assert len(entries) == self.split.length          # Adaptation for GastroNet Implementation
         return len(entries)
 
     def _load_labels(self, labels_path: str) -> List[Tuple[str, str]]:
