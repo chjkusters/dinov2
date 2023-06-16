@@ -5,7 +5,7 @@ python3 setup.py install --user
 
 ### GastroNet Implementation ###
 python3 dinov2/train/train.py \
-    --config-file dinov2/configs/train/vitl_short.yaml \
+    --config-file dinov2/configs/train/vitl16_short.yaml \
     --output-dir '/share/medical/chjkusters/dinov2/output/' \
     train.dataset_path=ImageNet:split=TRAIN:root='/share/medical/Vault/datasets_working/GastroNet5MDino':extra='/share/medical/Vault/datasets_working/GastroNet5MDino'
 
