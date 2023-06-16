@@ -11,6 +11,7 @@ python3 setup.py install --user
 
 ### ImageNet Implementation ###
 python3 dinov2/train/train.py \
+    --nodes 1 \
     --config-file dinov2/configs/train/vitl16_short.yaml \
     --output-dir '/share/medical/chjkusters/dinov2/output/' \
     train.dataset_path=ImageNet:split=TRAIN:root='/share/medical/Vault/datasets_working/Imagenet':extra='/share/medical/Vault/datasets_working/Imagenet'
