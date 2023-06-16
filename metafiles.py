@@ -1,8 +1,26 @@
 import os
 from dinov2.data.datasets import ImageNet
 
+# """GASTRONET IMPLEMENTATION"""
+# # Specify dataroot cluster
+# dataroot = '/share/medical/Vault/datasets_working/GastroNet5MDino'
+#
+# # Create labels.txt file in dataroot
+# with open(os.path.join(dataroot, 'labels.txt'), 'w') as f:
+#     for root, dirs, files in os.walk(dataroot):
+#         for dir in dirs:
+#             if dir != 'train' and dir != 'val' and dir != 'test':
+#                 f.write('{},{}\n'.format(dir, dir))
+#
+# for split in ImageNet.Split:
+#     if 'TRAIN' in '{}'.format(split):
+#         dataset = ImageNet(split=split, root=dataroot, extra=dataroot)
+#         dataset.dump_extra()
+
+
+"""IMAGENET IMPLEMENTATION"""
 # Specify dataroot cluster
-dataroot = '/share/medical/Vault/datasets_working/GastroNet5MDino'
+dataroot = '/share/medical/Vault/datasets_working/Imagenet'
 
 # Create labels.txt file in dataroot
 with open(os.path.join(dataroot, 'labels.txt'), 'w') as f:
@@ -12,6 +30,5 @@ with open(os.path.join(dataroot, 'labels.txt'), 'w') as f:
                 f.write('{},{}\n'.format(dir, dir))
 
 for split in ImageNet.Split:
-    if 'TRAIN' in '{}'.format(split):
-        dataset = ImageNet(split=split, root=dataroot, extra=dataroot)
-        dataset.dump_extra()
+    dataset = ImageNet(split=split, root=dataroot, extra=dataroot)
+    dataset.dump_extra()
