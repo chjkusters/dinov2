@@ -10,7 +10,7 @@ spec:
   restartPolicy: Never
   containers:
     - name: dinov2-container
-      image: "chjkusters4/dinov2:V3"
+      image: "chjkusters4/dinov2:V4"
       imagePullPolicy: Always
       volumeMounts:
       - mountPath: /share/medical

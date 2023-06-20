@@ -9,6 +9,7 @@ import logging
 import math
 import os
 from functools import partial
+import wandb
 
 from fvcore.common.checkpoint import PeriodicCheckpointer
 import torch
@@ -283,6 +284,20 @@ def do_train(cfg, model, resume=False):
         metric_logger.update(current_batch_size=current_batch_size)
         metric_logger.update(total_loss=losses_reduced, **loss_dict_reduced)
 
+        # WandB logging
+        wandb.log({
+            'total_loss': losses_reduced,
+            'dino_local_crops_loss': loss_dict_reduced['dino_local_crops_loss'].item(),
+            'dino_global_crops_loss': loss_dict_reduced['dino_global_crops_loss'].item(),
+            'koleo_loss': loss_dict_reduced['koleo_loss'].item(),
+            'ibot_loss': loss_dict_reduced['ibot_loss'].item(),
+            'lr': lr,
+            'wd': wd,
+            'mom': mom,
+            'last_layer_lr': last_layer_lr,
+            'current_batch_size': current_batch_size
+        })
+
         # checkpointing and testing
 
         if cfg.evaluation.eval_period_iterations > 0 and (iteration + 1) % cfg.evaluation.eval_period_iterations == 0:
@@ -296,7 +311,15 @@ def do_train(cfg, model, resume=False):
 
 
 def main(args):
+
     cfg = setup(args)
+
+    # Setup WandB Logger
+    wandb.init(
+        project='DINOv2-GastroNet',
+        name=args.output_dir.split('/')[-1],
+        dir=args.output_dir
+    )
 
     model = SSLMetaArch(cfg).to(torch.device("cuda"))
     model.prepare_for_distributed_training()
