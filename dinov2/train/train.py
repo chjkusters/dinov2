@@ -287,10 +287,10 @@ def do_train(cfg, model, resume=False):
         # WandB logging
         wandb.log({
             'total_loss': losses_reduced,
-            'dino_local_crops_loss': loss_dict_reduced['dino_local_crops_loss'].item(),
-            'dino_global_crops_loss': loss_dict_reduced['dino_global_crops_loss'].item(),
-            'koleo_loss': loss_dict_reduced['koleo_loss'].item(),
-            'ibot_loss': loss_dict_reduced['ibot_loss'].item(),
+            'dino_local_crops_loss': loss_dict_reduced['dino_local_crops_loss'],
+            'dino_global_crops_loss': loss_dict_reduced['dino_global_crops_loss'],
+            'koleo_loss': loss_dict_reduced['koleo_loss'],
+            'ibot_loss': loss_dict_reduced['ibot_loss'],
             'lr': lr,
             'wd': wd,
             'mom': mom,
