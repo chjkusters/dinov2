@@ -19,13 +19,13 @@ spec:
         name: dshm
       resources:
         limits:
-          nvidia.com/gpu: 2
-          cpu: "45"
-          memory: "90Gi"
+          nvidia.com/gpu: 8
+          cpu: "64"
+          memory: "192Gi"
         requests:
-          nvidia.com/gpu: 2
-          cpu: "45"
-          memory: "90Gi"
+          nvidia.com/gpu: 8
+          cpu: "64"
+          memory: "192Gi"
       env:
       - name: RUN_TRAINING
         value:  "/share/medical/chjkusters/dinov2/run_train.sh"
@@ -44,7 +44,7 @@ spec:
 
   nodeSelector:
 #    8 CPU/GPU, 24GB/GPU for 2080 | 24 CPU/GPU, 48GB/GPU for TITAN
-    nvidia.com/gpu.product: NVIDIA-TITAN-RTX
+#    nvidia.com/gpu.product: NVIDIA-TITAN-RTX
 #    nvidia.com/gpu.product: NVIDIA-RTX-A4500
-#    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
+    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-2080-Ti
 #    nvidia.com/gpu.product: NVIDIA-GeForce-RTX-3090-Ti
