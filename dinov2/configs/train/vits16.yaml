@@ -65,7 +65,7 @@ train:
   saveckp_freq: 20
   seed: 0
   num_workers: 10
-  OFFICIAL_EPOCH_LENGTH: 19941                          # Adapted to 5.104.993 / (num_gpu*batch_gpu) --> Default: 1250
+  OFFICIAL_EPOCH_LENGTH: 13294                          # Adapted to 5.104.993 / (num_gpu*batch_gpu) --> Default: 1250
   cache_dataset: true
   centering: "sinkhorn_knopp"                           # Adapted to value in paper --> Default: "centering"
 student:
@@ -74,7 +74,7 @@ student:
   drop_path_rate: 0.                                    # Adapted to value in paper --> Default: 0.3
   layerscale: 1.0e-05
   drop_path_uniform: true
-  pretrained_weights: ''                                # Defined in run_train.sh '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
+  pretrained_weights: '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'                                # Defined in run_train.sh
   ffn_layer: "mlp"
   block_chunks: 4                                       # Adapted to value for ViT-L --> Default: 0
   qkv_bias: true
@@ -112,4 +112,4 @@ crops:
   global_crops_size: 224
   local_crops_size: 96
 evaluation:
-  eval_period_iterations: 199410                         # Adapted to x_epochs * OFFICIAL_EPOCH_LENGTH --> Default: 12500 (10 * 1250)
+  eval_period_iterations: 132940                         # Adapted to 10 * OFFICIAL_EPOCH_LENGTH --> Default: 12500 (10 * 1250)
