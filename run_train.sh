@@ -17,6 +17,5 @@ python3 setup.py install --user
 ### RUN DINOV2 ON GASTRONET ###
 torchrun --nnodes 1 --nproc_per_node 8 dinov2/train/train.py \
     --config-file dinov2/configs/train/vits16.yaml \
-    --pretrained_weights '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth' \
     --output-dir '/share/medical/chjkusters/dinov2/output/Experiment 1' \
     train.dataset_path=ImageNet:split=TRAIN:root='/share/medical/Vault/datasets_working/GastroNet5MDino':extra='/share/medical/Vault/datasets_working/GastroNet5MDino'

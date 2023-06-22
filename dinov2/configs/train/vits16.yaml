@@ -74,7 +74,7 @@ student:
   drop_path_rate: 0.                                    # Adapted to value in paper --> Default: 0.3
   layerscale: 1.0e-05
   drop_path_uniform: true
-  pretrained_weights: ''                                # Defined in run_train.sh
+  pretrained_weights: ''                                # Defined in run_train.sh '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
   ffn_layer: "mlp"
   block_chunks: 4                                       # Adapted to value for ViT-L --> Default: 0
   qkv_bias: true
