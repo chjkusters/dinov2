@@ -59,7 +59,7 @@ ibot:
   head_nlayers: 3
   head_hidden_dim: 2048
 train:
-  batch_size_per_gpu: 40                                # Adapted to maximize GPU usage --> Default: 64
+  batch_size_per_gpu: 48                                # Adapted to maximize GPU usage --> Default: 64
   dataset_path: .                                       # Defined in run_train.sh
   output_dir: .                                         # Defined in run_train.sh
   saveckp_freq: 20
