@@ -74,7 +74,7 @@ student:
   drop_path_rate: 0.                                    # Adapted to value in paper --> Default: 0.3
   layerscale: 1.0e-05
   drop_path_uniform: true
-  pretrained_weights: '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'                                # Defined in run_train.sh
+  pretrained_weights: ''                                # '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
   ffn_layer: "mlp"
   block_chunks: 4                                       # Adapted to value for ViT-L --> Default: 0
   qkv_bias: true
@@ -87,7 +87,7 @@ teacher:
   teacher_temp: 0.07
   warmup_teacher_temp_epochs: 30
 optim:
-  epochs: 100
+  epochs: 200                                           # Adapted to 200 epochs --> Default: 100
   weight_decay: 0.04
   weight_decay_end: 0.2                                 # Adapted to value mentioned in paper --> Default: 0.4
   base_lr: 0.004                                        # Adapted --> Default: 0.004 (Batch size = 1024)
