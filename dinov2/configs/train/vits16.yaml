@@ -81,13 +81,13 @@ student:
   proj_bias: true
   ffn_bias: true
 teacher:
-  momentum_teacher: 0.994                              # Adapted to value in paper --> Default: 0.992
+  momentum_teacher: 0.998                              # Adapted --> Default: 0.992
   final_momentum_teacher: 1
-  warmup_teacher_temp: 0.04
-  teacher_temp: 0.07
+  warmup_teacher_temp: 0.04                            # Adapted --> Default: 0.02
+  teacher_temp: 0.07                                   # Adapted --> Default: 0.07
   warmup_teacher_temp_epochs: 30
 optim:
-  epochs: 200                                           # Adapted to 200 epochs --> Default: 100
+  epochs: 100
   weight_decay: 0.04
   weight_decay_end: 0.2                                 # Adapted to value mentioned in paper --> Default: 0.4
   base_lr: 0.004                                        # Adapted --> Default: 0.004 (Batch size = 1024)
@@ -95,7 +95,7 @@ optim:
   warmup_epochs: 10
   min_lr: 1.0e-06
   clip_grad: 3.0
-  freeze_last_layer_epochs: 1
+  freeze_last_layer_epochs: 3                           # Adapted --> Default: 1
   scaling_rule: sqrt_wrt_1024
   patch_embed_lr_mult: 0.2
   layerwise_decay: 0.9

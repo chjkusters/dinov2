@@ -45,11 +45,36 @@ class SSLMetaArch(nn.Module):
         teacher_model_dict["backbone"] = teacher_backbone
         logger.info(f"OPTIONS -- architecture : embed_dim: {embed_dim}")
 
+        # Load ImageNet pretrained weights!
         if cfg.student.pretrained_weights:
-            chkpt = torch.load(cfg.student.pretrained_weights)
+            checkpoint = torch.load(cfg.student.pretrained_weights)
             logger.info(f"OPTIONS -- pretrained weights: loading from {cfg.student.pretrained_weights}")
-            # student_backbone.load_state_dict(chkpt["model"], strict=False)
-            student_backbone.load_state_dict(chkpt, strict=True)
+
+            if cfg.student.block_chunks == 4:
+
+                # Adapt key names of checkpoint model (BLOCK_CHUNKS INSERTS PREFIX 0., 1., 2., 3. etc.)
+                checkpoint_keys = list(checkpoint.keys())
+                for key in checkpoint_keys:
+                    if 'blocks.0.' in key or 'blocks.1.' in key or 'blocks.2.' in key:
+                        checkpoint[key.replace('blocks', 'blocks.0')] = checkpoint[key]
+                        del checkpoint[key]
+                    elif 'blocks.3.' in key or 'blocks.4.' in key or 'blocks.5.' in key:
+                        checkpoint[key.replace('blocks', 'blocks.1')] = checkpoint[key]
+                        del checkpoint[key]
+                    elif 'blocks.6.' in key or 'blocks.7.' in key or 'blocks.8.' in key:
+                        checkpoint[key.replace('blocks', 'blocks.2')] = checkpoint[key]
+                        del checkpoint[key]
+                    elif 'blocks.9.' in key or 'blocks.10.' in key or 'blocks.11.' in key:
+                        checkpoint[key.replace('blocks', 'blocks.3')] = checkpoint[key]
+                        del checkpoint[key]
+
+            # Loop over the model/checkpoint and remove size mismatch keys from checkpoint
+            for key in student_backbone.state_dict().keys():
+                if student_backbone.state_dict()[key].shape != checkpoint[key].shape:
+                    del checkpoint[key]
+
+            # Load state_dict for the student backbone
+            student_backbone.load_state_dict(checkpoint, strict=False)
 
         self.embed_dim = embed_dim
         self.dino_out_dim = cfg.dino.head_n_prototypes
