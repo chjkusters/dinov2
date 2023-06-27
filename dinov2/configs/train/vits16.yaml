@@ -83,8 +83,8 @@ student:
 teacher:
   momentum_teacher: 0.998                              # Adapted --> Default: 0.992
   final_momentum_teacher: 1
-  warmup_teacher_temp: 0.04                            # Adapted --> Default: 0.02
-  teacher_temp: 0.07                                   # Adapted --> Default: 0.07
+  warmup_teacher_temp: 0.02                            # Adapted --> Default: 0.04
+  teacher_temp: 0.04                                   # Adapted --> Default: 0.07
   warmup_teacher_temp_epochs: 30
 optim:
   epochs: 100
