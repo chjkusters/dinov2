@@ -75,7 +75,7 @@ student:
   layerscale: 1.0e-05
   drop_path_uniform: true
   pretrained_weights: ''                                # '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
-  ffn_layer: "swiglu"                                   # Adapted --> Default: mlp
+  ffn_layer: "mlp"                                   # Adapted --> Default: mlp
   block_chunks: 4                                       # Adapted to value for ViT-L --> Default: 0
   qkv_bias: true
   proj_bias: true
