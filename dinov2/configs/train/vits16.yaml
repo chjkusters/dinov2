@@ -53,7 +53,7 @@ ibot:
   mask_ratio_min_max:
   - 0.1
   - 0.5
-  separate_head: false
+  separate_head: true                                  # Adapted --> Default: false
   head_n_prototypes: 65536
   head_bottleneck_dim: 256
   head_nlayers: 3
@@ -67,38 +67,38 @@ train:
   num_workers: 10
   OFFICIAL_EPOCH_LENGTH: 13294                          # Adapted to 5.104.993 / (num_gpu*batch_gpu) --> Default: 1250
   cache_dataset: true
-  centering: "sinkhorn_knopp"                           # Adapted to value in paper --> Default: "centering"
+  centering: "sinkhorn_knopp"                           # Adapted --> Default: "centering"
 student:
   arch: vit_small
   patch_size: 16
-  drop_path_rate: 0.                                    # Adapted to value in paper --> Default: 0.3
+  drop_path_rate: 0.4                                   # Adapted --> Default: 0.3
   layerscale: 1.0e-05
   drop_path_uniform: true
   pretrained_weights: ''                                # '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
-  ffn_layer: "mlp"
+  ffn_layer: swiglufused                                # Adapted --> Default: mlp
   block_chunks: 4                                       # Adapted to value for ViT-L --> Default: 0
   qkv_bias: true
   proj_bias: true
   ffn_bias: true
 teacher:
-  momentum_teacher: 0.998                              # Adapted --> Default: 0.992
+  momentum_teacher: 0.994                              # Adapted --> Default: 0.992
   final_momentum_teacher: 1
-  warmup_teacher_temp: 0.02                            # Adapted --> Default: 0.04
-  teacher_temp: 0.04                                   # Adapted --> Default: 0.07
+  warmup_teacher_temp: 0.04
+  teacher_temp: 0.07
   warmup_teacher_temp_epochs: 30
 optim:
   epochs: 100
   weight_decay: 0.04
-  weight_decay_end: 0.2                                 # Adapted to value mentioned in paper --> Default: 0.4
-  base_lr: 0.004                                        # Adapted --> Default: 0.004 (Batch size = 1024)
+  weight_decay_end: 0.2                                 # Adapted --> Default: 0.4
+  base_lr: 2.0e-04                                      # Adapted --> Default: 0.004 (Batch size = 1024)
   lr: 0.
   warmup_epochs: 10
   min_lr: 1.0e-06
   clip_grad: 3.0
-  freeze_last_layer_epochs: 3                           # Adapted --> Default: 1
+  freeze_last_layer_epochs: 1
   scaling_rule: sqrt_wrt_1024
   patch_embed_lr_mult: 0.2
-  layerwise_decay: 0.9
+  layerwise_decay: 1.0                                  # Adapted --> Default: 0.9
   adamw_beta1: 0.9
   adamw_beta2: 0.999
 crops:
