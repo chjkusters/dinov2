@@ -53,7 +53,7 @@ ibot:
   mask_ratio_min_max:
   - 0.1
   - 0.5
-  separate_head: true                                  # Adapted --> Default: false
+  separate_head: true                                   # Adapted --> Default: false
   head_n_prototypes: 65536
   head_bottleneck_dim: 256
   head_nlayers: 3
@@ -75,7 +75,7 @@ student:
   layerscale: 1.0e-05
   drop_path_uniform: true
   pretrained_weights: ''                                # '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
-  ffn_layer: "swiglufused"                              # Adapted --> Default: mlp
+  ffn_layer: "mlp"                                      # Adapted --> Default: mlp
   block_chunks: 4                                       # Adapted to value for ViT-L --> Default: 0
   qkv_bias: true
   proj_bias: true
