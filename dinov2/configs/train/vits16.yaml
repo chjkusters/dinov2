@@ -71,7 +71,7 @@ train:
 student:
   arch: vit_small
   patch_size: 16
-  drop_path_rate: 0.1                                    # Adapted --> Default: 0.3
+  drop_path_rate: 0.                                    # Adapted --> Default: 0.3
   layerscale: 1.0e-05
   drop_path_uniform: true
   pretrained_weights: ''                                # '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
