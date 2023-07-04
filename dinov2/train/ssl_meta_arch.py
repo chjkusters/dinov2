@@ -70,8 +70,9 @@ class SSLMetaArch(nn.Module):
 
             # Loop over the model/checkpoint and remove size mismatch keys from checkpoint
             for key in student_backbone.state_dict().keys():
-                if student_backbone.state_dict()[key].shape != checkpoint[key].shape:
-                    del checkpoint[key]
+                if key in checkpoint:
+                    if student_backbone.state_dict()[key].shape != checkpoint[key].shape:
+                        del checkpoint[key]
 
             # Load state_dict for the student backbone
             student_backbone.load_state_dict(checkpoint, strict=False)
