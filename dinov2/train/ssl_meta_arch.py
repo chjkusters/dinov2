@@ -74,7 +74,7 @@ class SSLMetaArch(nn.Module):
                     del checkpoint[key]
 
             # Load state_dict for the student backbone
-            student_backbone.load_state_dict(checkpoint, strict=False)
+            student_backbone.load_state_dict(checkpoint, strict=True)
 
         self.embed_dim = embed_dim
         self.dino_out_dim = cfg.dino.head_n_prototypes
