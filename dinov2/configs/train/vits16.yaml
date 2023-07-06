@@ -81,10 +81,10 @@ student:
   proj_bias: true
   ffn_bias: true
 teacher:
-  momentum_teacher: 0.994                              # Adapted --> Default: 0.992
+  momentum_teacher: 0.9995                              # Adapted --> Default: 0.992
   final_momentum_teacher: 1
-  warmup_teacher_temp: 0.04
-  teacher_temp: 0.07
+  warmup_teacher_temp: 0.01                             # Adapted --> Default: 0.04
+  teacher_temp: 0.04                                    # Adapted --> Default: 0.07
   warmup_teacher_temp_epochs: 30
 optim:
   epochs: 100
@@ -94,8 +94,8 @@ optim:
   lr: 0.
   warmup_epochs: 10
   min_lr: 1.0e-06
-  clip_grad: 5.0                                        # Adapted --> Default: 3.0
-  freeze_last_layer_epochs: 1
+  clip_grad: 3.0
+  freeze_last_layer_epochs: 5                           # Adapted --> Default: 1
   scaling_rule: sqrt_wrt_1024
   patch_embed_lr_mult: 0.2
   layerwise_decay: 1.0                                  # Adapted --> Default: 0.9
