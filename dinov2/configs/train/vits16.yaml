@@ -76,7 +76,7 @@ student:
   drop_path_uniform: true
   pretrained_weights: ''                                # '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
   ffn_layer: "swiglufused"                              # Adapted --> Default: mlp
-  block_chunks: 0                                       # Adapted to value for ViT-L --> Default: 0
+  block_chunks: 4                                       # Adapted to value for ViT-L --> Default: 0
   qkv_bias: true
   proj_bias: true
   ffn_bias: true
@@ -94,7 +94,7 @@ optim:
   lr: 0.
   warmup_epochs: 10
   min_lr: 1.0e-06
-  clip_grad: 3.0
+  clip_grad: 5.0                                        # Adapted --> Default: 3.0
   freeze_last_layer_epochs: 1
   scaling_rule: sqrt_wrt_1024
   patch_embed_lr_mult: 0.2
