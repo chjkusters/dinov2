@@ -303,6 +303,18 @@ def init_weights_vit_timm(module: nn.Module, name: str = ""):
             nn.init.zeros_(module.bias)
 
 
+def vit_tiny(patch_size=16, **kwargs):
+    model = DinoVisionTransformer(
+        patch_size=patch_size,
+        embed_dim=192,
+        depth=12,
+        num_heads=3,
+        block_fn=partial(Block, attn_class=MemEffAttention),
+        **kwargs,
+    )
+    return model
+
+
 def vit_small(patch_size=16, **kwargs):
     model = DinoVisionTransformer(
         patch_size=patch_size,

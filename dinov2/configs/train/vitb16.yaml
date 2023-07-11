@@ -59,19 +59,19 @@ ibot:
   head_nlayers: 3
   head_hidden_dim: 2048
 train:
-  batch_size_per_gpu: 24                                # Adapted to maximize GPU usage --> Default: 64
+  batch_size_per_gpu: 64                                # Adapted to maximize GPU usage --> Default: 64
   dataset_path: .                                       # Defined in run_train.sh
   output_dir: .                                         # Defined in run_train.sh
   saveckp_freq: 20
   seed: 0
   num_workers: 10
-  OFFICIAL_EPOCH_LENGTH: 26588                          # Adapted to 5.104.993 / (num_gpu*batch_gpu) --> Default: 1250
+  OFFICIAL_EPOCH_LENGTH: 9970                          # Adapted to 5.104.993 / (num_gpu*batch_gpu) --> Default: 1250
   cache_dataset: true
   centering: "sinkhorn_knopp"                           # Adapted --> Default: "centering"
 student:
-  arch: vit_base
+  arch: vit_tiny
   patch_size: 16
-  drop_path_rate: 0.2                                   # Adapted --> Default: 0.3
+  drop_path_rate: 0.1                                   # Adapted --> Default: 0.3
   layerscale: 1.0e-05
   drop_path_uniform: true
   pretrained_weights: ''                                # '/share/medical/chjkusters/dinov2/pretrained/dinov2_vitb14_pretrain.pth'
@@ -112,4 +112,4 @@ crops:
   global_crops_size: 224
   local_crops_size: 96
 evaluation:
-  eval_period_iterations: 265880                        # Adapted to 10 * OFFICIAL_EPOCH_LENGTH --> Default: 12500 (10 * 1250)
+  eval_period_iterations: 99700                        # Adapted to 10 * OFFICIAL_EPOCH_LENGTH --> Default: 12500 (10 * 1250)
