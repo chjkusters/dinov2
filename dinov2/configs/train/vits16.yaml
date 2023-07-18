@@ -107,8 +107,8 @@ crops:
   - 1.0
   local_crops_number: 8
   local_crops_scale:
-  - 0.20
-  - 0.40
+  - 0.25
+  - 0.50
   global_crops_size: 224
   local_crops_size: 96
 evaluation:
