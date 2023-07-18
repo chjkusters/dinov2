@@ -59,19 +59,19 @@ ibot:
   head_nlayers: 3
   head_hidden_dim: 2048
 train:
-  batch_size_per_gpu: 40                                # Adapted to maximize GPU usage --> Default: 64
+  batch_size_per_gpu: 56                                # Adapted to maximize GPU usage --> Default: 64
   dataset_path: .                                       # Defined in run_train.sh
   output_dir: .                                         # Defined in run_train.sh
   saveckp_freq: 20
   seed: 0
   num_workers: 10
-  OFFICIAL_EPOCH_LENGTH: 15953                          # Adapted to 5.104.993 / (num_gpu*batch_gpu) --> Default: 1250
+  OFFICIAL_EPOCH_LENGTH: 11396                          # Adapted to 5.104.993 / (num_gpu*batch_gpu) --> Default: 1250
   cache_dataset: true
   centering: "sinkhorn_knopp"                           # Adapted --> Default: "centering"
 student:
   arch: vit_small
   patch_size: 16
-  drop_path_rate: 0.1                                    # Adapted --> Default: 0.3
+  drop_path_rate: 0.4                                   # Adapted --> Default: 0.3
   layerscale: 1.0e-05
   drop_path_uniform: true
   pretrained_weights: ''                                # '/share/medical/chjkusters/dinov2/pretrained/dinov2_vits14_pretrain.pth'
@@ -81,7 +81,7 @@ student:
   proj_bias: true
   ffn_bias: true
 teacher:
-  momentum_teacher: 0.9995                              # Adapted --> Default: 0.992
+  momentum_teacher: 0.994                               # Adapted --> Default: 0.992
   final_momentum_teacher: 1
   warmup_teacher_temp: 0.04
   teacher_temp: 0.07
@@ -90,12 +90,12 @@ optim:
   epochs: 100
   weight_decay: 0.04
   weight_decay_end: 0.2                                 # Adapted --> Default: 0.4
-  base_lr: 1.0e-03                                      # Adapted --> Default: 0.004 (Batch size = 1024)
+  base_lr: 3.5e-04                                      # Adapted --> Default: 0.004 (Batch size = 1024)
   lr: 0.
   warmup_epochs: 10
   min_lr: 1.0e-06
   clip_grad: 3.0
-  freeze_last_layer_epochs: 5                           # Adapted --> Default: 1
+  freeze_last_layer_epochs: 1
   scaling_rule: sqrt_wrt_1024
   patch_embed_lr_mult: 0.2
   layerwise_decay: 1.0                                  # Adapted --> Default: 0.9
@@ -103,13 +103,13 @@ optim:
   adamw_beta2: 0.999
 crops:
   global_crops_scale:
-  - 0.32
+  - 0.70
   - 1.0
   local_crops_number: 8
   local_crops_scale:
-  - 0.05
-  - 0.32
+  - 0.20
+  - 0.40
   global_crops_size: 224
   local_crops_size: 96
 evaluation:
-  eval_period_iterations: 159530                         # Adapted to 10 * OFFICIAL_EPOCH_LENGTH --> Default: 12500 (10 * 1250)
+  eval_period_iterations: 113960                         # Adapted to 10 * OFFICIAL_EPOCH_LENGTH --> Default: 12500 (10 * 1250)
