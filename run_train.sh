@@ -1,5 +1,5 @@
 ### SETUP WANDB LOGGING ###
-export WANDB_API_KEY=86058605d2baf0f71d91c52b865cb2ad2482fbc1
+export WANDB_API_KEY=...
 export WANDB_DIR=/share/medical/chjkusters/dinov2/
 export WANDB_CONFIG_DIR=/share/medical/chjkusters/dinov2/
 export WANDB_CACHE_DIR=/share/medical/chjkusters/dinov2/
